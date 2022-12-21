@@ -16,3 +16,18 @@ export const getListSuccess = (list) => ({
 export const getListFailure = () => ({
   type: GET_LIST_FAILURE,
 });
+
+export function fetchData() {
+  return async (dispatch) => {
+    dispatch(getList());
+
+    try {
+      const response = await fetch("public/oompa-loompas.json");
+      const data = await response.json();
+
+      dispatch(getListSuccess(data));
+    } catch (error) {
+      dispatch(getListFailure());
+    }
+  };
+}
