@@ -1,0 +1,15 @@
+.list-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+  row-gap: 1em;
+}
+.list-wrapper a {
+  text-decoration: none;
+  color: black;
+}
+@media (width <= 30em) {
+  .list-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

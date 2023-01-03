@@ -2,3 +2,10 @@ body {
   background-color: white;
   font-family: "Helvetica", sans-serif;
 }
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+}
