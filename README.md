@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Oompa Loompas Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application to manage the Oompa Loompa's crew of Willy Wonka's chocolate factory.
 
-## Available Scripts
+The application consists of 2 views (list of workers and a detailed page of selected worker).
 
-In the project directory, you can run:
+The list of workers has infinite scroll and a search input to filter workers by first and last name and the profession.
 
-### `npm start`
+The list is cached for 24 hours with RTK query.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The character view displays the image, name, and description text (which might include html)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tools and environment
 
-### `npm test`
+The project was created in CRA in plain JavaScript and CSS in Visual Studio Code and folders for components, pages (views), services to configure API with @reduxjs/toolkit. The routes are configured with React Router.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For the code formatter I configured a Prettier plugin in VScode.
 
-### `npm run build`
+## Run the project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the project in the development mode, run [`npm start`] in the terminal within the project folder.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Styling
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I used CSS to style the page. For the naming, I follow BEM (Blocks, Elements and Modifiers) methodology. I also added the styles for the mobile view. The styling follows the figma design but some minor details are missing.
 
-### `npm run eject`
+I also use rem units for fonts and media queries to improve the accessibility.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Testing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Cross-browser testing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Tested in the Chrome browser and for the responsive view.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Unit testing
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I have not implemented the tests but the tests should be added to the components in order to improve the code quality, to ease maintenance of the codebase, and for the faster development. I would use React Testing Library in this app.

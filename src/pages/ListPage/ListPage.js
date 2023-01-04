@@ -15,7 +15,7 @@ const ListPage = () => {
   const renderList = () => {
     if (isLoading) return <p>Loading list...</p>;
     if (error) return <p>Unable to display list.</p>;
-    if (data && data.results && data.results.length > 0) {
+    if (data && data.results !== undefined) {
       const _data = scrolledData.length > 0 ? scrolledData : data.results;
       return _data.map((item) => (
         <Character key={item.last_name} item={item} excerpt />
@@ -51,7 +51,7 @@ const ListPage = () => {
       />
       <h2 style={{ textAlign: "center" }}>Find Your Oompa Loompa</h2>
       <p style={{ textAlign: "center" }}>There are more than 100K</p>
-      {data && data.results && data.results.length > 0 && (
+      {data && data.results && data.results !== undefined && (
         <InfiniteScroll
           dataLength={data.results.length * data.current}
           next={() => setPage(page + 1)}
