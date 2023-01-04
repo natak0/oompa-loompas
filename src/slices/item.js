@@ -30,14 +30,14 @@ export const itemSelector = (state) => state.item;
 export default itemSlice.reducer;
 
 export function fetchItem(id) {
+  const url = `https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/${id}`;
   return async (dispatch) => {
     dispatch(getItem());
     try {
-      const response = await fetch(
-        `https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/${id}`
-      );
+      const response = await fetch(url);
       const data = await response.json();
       console.log("character", data);
+      // Cache.put(url, data);
       dispatch(getItemSuccess(data));
     } catch (error) {
       dispatch(getItemFailure());

@@ -1,27 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { useParams } from "react-router";
-import { fetchItem, itemSelector } from "../slices/item";
 import { Character } from "../components/Character/Character";
+import { useGetOompasByCharacterQuery } from "../services/oompas";
 
 const ListItem = ({ match }) => {
-  const dispatch = useDispatch();
-  const {
-    item,
-    loading: itemLoading,
-    hasErrors: itemHasErrors,
-  } = useSelector(itemSelector);
-  let { id } = useParams();
-
-  useEffect(() => {
-    id && dispatch(fetchItem(id));
-  }, [dispatch, id]);
+  const { id } = useParams();
+  const { data, error, isLoading } = useGetOompasByCharacterQuery(id);
+  console.log("character", data, id);
 
   const renderItem = () => {
-    if (itemLoading) return <p>Loading item...</p>;
-    if (itemHasErrors) return <p>Unable to display item.</p>;
+    if (isLoading) return <p>Loading item...</p>;
+    if (error) return <p>Unable to display item.</p>;
 
-    return <Character item={item} />;
+    if (id && data) return <Character item={data} />;
   };
 
   return <section>{renderItem()}</section>;

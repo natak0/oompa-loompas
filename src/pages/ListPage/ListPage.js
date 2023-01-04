@@ -1,25 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { listSelector } from "../../slices/list";
-import { fetchData } from "../../slices/list";
+import React from "react";
 import { Character } from "../../components/Character/Character";
+import { useGetOompasByPageQuery } from "../../services/oompas";
+
 import "./ListPage.css";
 
 const ListPage = () => {
-  const dispatch = useDispatch();
-  const { list, loading, hasErrors } = useSelector(listSelector);
-  useEffect(() => {
-    console.log("fetch data");
-    dispatch(fetchData());
-  }, [dispatch]);
-  console.log("list", list);
+  const { data, error, isLoading } = useGetOompasByPageQuery("1");
+  console.log("list", data);
   const renderList = () => {
-    if (loading) return <p>Loading list...</p>;
-    if (hasErrors) return <p>Unable to display list.</p>;
-
+    if (isLoading) return <p>Loading list...</p>;
+    if (error) return <p>Unable to display list.</p>;
     return (
-      list.results &&
-      list.results.map((item) => (
+      data.results &&
+      data.results.map((item) => (
         <Character key={item.last_name} item={item} excerpt />
       ))
     );
