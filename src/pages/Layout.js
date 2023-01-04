@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Search from "../components/Search/Search";
 
 const Layout = ({ children }) => {
+ 
   return (
     <section>
       <Search placeholder="Search" />

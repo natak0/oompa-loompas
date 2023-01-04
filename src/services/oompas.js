@@ -16,7 +16,7 @@ export const oompasApi = createApi({
     getOompasByCharacter: builder.query({
       query: (id) => `/characters/${id}`,
       providesTags: (result, error, id) =>
-        result ? [{ type: "Character", result, error, id }] : ["Character"],
+        result ? [{ type: "Character", id }] : ["Character"],
     }),
   }),
 });

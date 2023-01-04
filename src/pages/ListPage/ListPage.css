@@ -3,6 +3,7 @@
   grid-template-columns: repeat(3, 1fr);
   column-gap: 10px;
   row-gap: 1em;
+  overflow: "auto";
 }
 .list-wrapper a {
   text-decoration: none;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { Character } from "../components/Character/Character";
 import { useGetOompasByCharacterQuery } from "../services/oompas";
