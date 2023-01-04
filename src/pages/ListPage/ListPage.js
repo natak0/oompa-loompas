@@ -15,52 +15,55 @@ const ListPage = () => {
   const renderList = () => {
     if (isLoading) return <p>Loading list...</p>;
     if (error) return <p>Unable to display list.</p>;
-    if (data && data.results && data.current && scrolledData.length > 0) {
-      return scrolledData.map((item) => (
+    if (data && data.results && data.results.length > 0) {
+      const _data = scrolledData.length > 0 ? scrolledData : data.results;
+      return _data.map((item) => (
         <Character key={item.last_name} item={item} excerpt />
       ));
     }
   };
+
   useEffect(() => {
-    if (data.results !== undefined) {
+    if (data && data.results && data.results.length > 0) {
       let dataArray = [...scrolledData].concat(data.results);
       setScrolledData(dataArray);
     }
   }, [data]);
 
   useEffect(() => {
-    if (searchValue.length > 0 && data) {
-      const row = scrolledData.filter((value) =>
-        value.first_name.toLowerCase().includes(searchValue.toLowerCase())
+    if (searchValue.length > 0) {
+      const row = scrolledData.filter(
+        (value) =>
+          value.first_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+          value.last_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+          value.profession.toLowerCase().includes(searchValue.toLowerCase())
       );
       setScrolledData(row);
-    } else setScrolledData(data.results);
-  }, [searchValue, data]);
-  
-  console.log(scrolledData);
+    } else setScrolledData(data?.results);
+  }, [searchValue]);
+
   return (
-    data &&
-    data.results &&
-    data.current &&
-    data.total && (
-      <section>
-        <Search
-          placeholder="Search"
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
+    <section>
+      <Search
+        placeholder="Search"
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
+      <h2 style={{ textAlign: "center" }}>Find Your Oompa Loompa</h2>
+      <p style={{ textAlign: "center" }}>There are more than 100K</p>
+      {data && data.results && data.results.length > 0 && (
         <InfiniteScroll
-          dataLength={data.results.length * data.current} //This is important field to render the next data
+          dataLength={data.results.length * data.current}
           next={() => setPage(page + 1)}
           hasMore={data.total >= data.current}
-          loader={<h4>Loading...</h4>}
+          loader={<p>Loading...</p>}
           className="list-wrapper"
-          endMessage={<p style={{ textAlign: "center" }}>No more results</p>}
+          endMessage={<p>No more results</p>}
         >
           {renderList()}
         </InfiniteScroll>
-      </section>
-    )
+      )}
+    </section>
   );
 };
 

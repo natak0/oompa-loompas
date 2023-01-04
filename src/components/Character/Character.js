@@ -16,7 +16,9 @@ export const Character = ({ item, excerpt }) => {
             : "Other"}
         </span>
         <span>{item.profession}</span>
-        {!excerpt && <span>{item.description}</span>}
+        {!excerpt && (
+          <span dangerouslySetInnerHTML={{ __html: item.description }} />
+        )}
       </div>
     </article>
   );

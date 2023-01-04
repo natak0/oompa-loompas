@@ -6,7 +6,6 @@ import { useGetOompasByCharacterQuery } from "../services/oompas";
 const ListItem = ({ match }) => {
   const { id } = useParams();
   const { data, error, isLoading } = useGetOompasByCharacterQuery(id);
-  console.log("character", data, id);
 
   const renderItem = () => {
     if (isLoading) return <p>Loading item...</p>;

@@ -10,13 +10,15 @@ export const oompasApi = createApi({
   endpoints: (builder) => ({
     getOompasByPage: builder.query({
       query: (page) => `?page=${page}`,
+      refetchOnMountOrArgChange: 86400, // refetch if 24 hours have passed
       providesTags: (result, error, arg) =>
         result ? [{ type: "List", result }] : ["List"],
     }),
     getOompasByCharacter: builder.query({
-      query: (id) => `/characters/${id}`,
+      query: (id) => `/${id}`,
+      refetchOnMountOrArgChange: 86400,
       providesTags: (result, error, id) =>
-        result ? [{ type: "Character", id }] : ["Character"],
+        result ? [{ type: "Character", result }] : ["Character"],
     }),
   }),
 });
