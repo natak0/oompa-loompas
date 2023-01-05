@@ -18,7 +18,9 @@ For the code formatter I configured a Prettier plugin in VScode.
 
 ## Run the project
 
-To run the project in the development mode, run [`npm start`] in the terminal within the project folder.
+To run the project in the development mode, run [`npm install`] and [`npm start`] in the terminal within the project folder.
+
+To build the app for production to the `build` folder.\, run [`npm run build`]
 
 # Styling
 
